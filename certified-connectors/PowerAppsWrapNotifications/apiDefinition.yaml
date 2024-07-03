@@ -1,0 +1,115 @@
+swagger: '2.0'
+info:
+  description: Send Push Notification in your Wrapped App
+  title: WrapPushNotification
+  version: '1.0'
+host: fcm.googleapis.com
+basePath: /v1/projects
+schemes:
+  - https
+consumes: []
+produces: []
+paths:
+  /{projectId}/messages:send:
+    post:
+      parameters:
+        - description: The project ID
+          in: path
+          name: projectId
+          required: true
+          type: string
+        - default: application/json
+          in: header
+          name: Content-Type
+          required: false
+          type: string
+        - in: body
+          name: body
+          required: false
+          schema:
+            properties:
+              message:
+                description: message
+                properties:
+                  notification:
+                    description: notification
+                    properties:
+                      body:
+                        description: body
+                        type: string
+                      title:
+                        description: title
+                        type: string
+                    type: object
+                  topic:
+                    description: topic
+                    type: string
+                type: object
+            type: object
+      responses:
+        default:
+          description: default
+          headers:
+            '-content-encoding':
+              description: '-content-encoding'
+              type: string
+            Alt-svc:
+              description: Alt-svc
+              type: string
+            Cache-control:
+              description: Cache-control
+              type: string
+            Content-length:
+              description: Content-length
+              type: integer
+            Content-type:
+              description: Content-type
+              type: string
+            Date:
+              description: Date
+              type: string
+            HTTP/1.1:
+              description: HTTP/1.1
+              type: string
+            Server:
+              description: Server
+              type: string
+            Transfer-encoding:
+              description: Transfer-encoding
+              type: string
+            Vary:
+              description: Vary
+              type: string
+            X-content-type-options:
+              description: X-content-type-options
+              type: string
+            X-frame-options:
+              description: X-frame-options
+              type: string
+            X-xss-protection:
+              description: X-xss-protection
+              type: integer
+          schema:
+            properties:
+              name:
+                description: name
+                type: string
+            type: object
+      description: Sends a push notification
+      operationId: sendMessage
+      summary: Send Wrap Push Notification
+definitions: {}
+parameters: {}
+responses: {}
+securityDefinitions:
+  oauth2-auth:
+    authorizationUrl: https://accounts.google.com/o/oauth2/auth
+    flow: accessCode
+    scopes:
+      https://www.googleapis.com/auth/firebase.messaging: https://www.googleapis.com/auth/firebase.messaging
+    tokenUrl: https://oauth2.googleapis.com/token
+    type: oauth2
+security:
+  - oauth2-auth:
+      - https://www.googleapis.com/auth/firebase.messaging
+tags: []
